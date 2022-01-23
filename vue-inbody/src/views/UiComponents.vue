@@ -50,7 +50,8 @@
 
 <script>
 export default {
-
+    name: "uiComponents",
+    
 }
 </script>
 
