@@ -17,31 +17,45 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Color Chip</th>
+                    <th>BUTTON</th>
                 </tr>
                 <tr>
-                <td>
-                    <div class="componentbox">#111111 기본 검정 $blackColor</div>&nbsp;
-                    <div class="componentbox cb1">lighten($blackColor, $cPX36)</div>
-                    <br />
-                    <div class="componengraytbox">#cccccc 기본 회색 $grayColor</div>&nbsp;
-                    <div class="componengraytbox cb1">darken($grayColor, $cPX16)</div>
-                    <br />
-                    <br />
-                    <div class="componentgreenbox">#00a46c 기본 녹색 $greenColor</div>&nbsp;
-                    <div class="componentgreenbox cgb1">lighten($greenColor, $cPX36)</div>
-                    <br />
-                    <div class="componentgreenbox cdb1">#087d55 어두운 녹색 $darkGreenColor</div>
-                    <br />
-                    <br />
-                    <div class="componentbluebox">#3079ff 기본 파란색 $blueColor</div>&nbsp;
-                    <div class="componentbluebox cbb1">lighten($blueColor, $cPX36)</div>
-                    <br />
-                    <div class="componentbluebox cdb1">#1c5ed5 어두운 파란색 $darkBlueColor</div>
-                    <br />
-                    <br />
-                    이외의 색상 코드는 각 UI 별로 각각 적용하도록 함
-                </td>
+                    <td>
+                        <strong>default</strong>
+                        <v-btn elevation="2">BUTTON</v-btn>
+                        <br /><br />
+                        <strong>X small</strong>
+                        <v-btn elevation="2" x-small>BUTTON</v-btn>
+                        <br /><br />
+                        <strong>small</strong>
+                        <v-btn elevation="2" small>BUTTON</v-btn>
+                        <br /><br />
+                        <strong>large</strong>
+                        <v-btn elevation="2" large>BUTTON</v-btn>
+                        <br /><br />
+                        <strong>X large</strong>
+                        <v-btn elevation="2" x-large>BUTTON</v-btn>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Design Button</th>
+                </tr>
+                <tr>
+                    <td>
+                        <v-btn elevation="2" large>
+                            <v-icon color="primary" dense>+ 검사기록</v-icon>
+                        </v-btn>
+                        &nbsp;&nbsp;
+                        <font-awesome-icon icon="running" size="3x" />
+                        &nbsp;&nbsp;
+                        <font-awesome-icon icon="comments" size="3x" />
+                        &nbsp;&nbsp;
+                        <font-awesome-icon icon="comment-dots" size="3x" />
+                        &nbsp;&nbsp;
+                        <font-awesome-icon icon="user" size="3x" />
+                        &nbsp;&nbsp;
+                        <font-awesome-icon icon="clipboard-list" size="3x" />
+                    </td>
                 </tr>
             </table>
         </div>
