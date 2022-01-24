@@ -57,6 +57,126 @@
                         <font-awesome-icon icon="clipboard-list" size="3x" />
                     </td>
                 </tr>
+                <tr>
+                    <th>Date picker (year only)</th>
+                </tr>
+                <tr>
+                        <v-date-picker type="year">
+                        </v-date-picker>   
+                </tr>
+                <tr>
+                    <th>Pagination</th>
+                </tr>
+                <tr>
+                    <v-pagination
+                        v-model="page"
+                        :length="4"
+                        circle
+                    ></v-pagination>
+                </tr>
+                <tr>
+                    <th>Input</th>
+                </tr>
+                <tr>
+                    <!-- validation input -->
+                    <v-text-field :rules="rules"></v-text-field>
+                </tr>
+                <tr>
+                    <th>radio button</th>
+                </tr>
+                <tr>
+                    <v-radio-group
+                        v-model="row"
+                        row
+                        >
+                        <v-radio
+                            label="여성"
+                            value="female"
+                        ></v-radio>
+                        <v-radio
+                            label="남성"
+                            value="male"
+                        ></v-radio>
+                    </v-radio-group>
+                </tr>
+                <tr>
+                    <th>커뮤니티 게시판</th>
+                </tr>
+                <tr>
+                    <v-card>
+                        <v-toolbar
+                        flat
+                        color="blue"
+                        dark
+                        >
+                        <v-toolbar-title>후기를 남겨주세요</v-toolbar-title>
+                        </v-toolbar>
+
+                        <v-card-text>
+                        <v-text-field
+                            filled
+                            label="제목"
+                            value="My new post"
+                        ></v-text-field>
+
+                        <v-textarea
+                            filled
+                            label="내용"
+                            value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse"
+                        ></v-textarea>
+
+                        <v-divider class="my-2"></v-divider>
+
+                        <v-item-group multiple>
+                            <v-subheader>태그</v-subheader>
+                            <v-item
+                            v-for="n in 8"
+                            :key="n"
+                            v-slot="{ active, toggle }"
+                            >
+                            <v-chip
+                                active-class="purple--text"
+                                :input-value="active"
+                                @click="toggle"
+                            >
+                                Tag {{ n }}
+                            </v-chip>
+                            </v-item>
+                        </v-item-group>
+                        </v-card-text>
+
+                        <v-divider></v-divider>
+
+                        <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="success"
+                            depressed
+                        >
+                            등록하기
+                        </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </tr>
+                <tr>
+                    <th>커뮤니티 후기사진 슬라이드</th>
+                </tr>
+                <tr>
+                    <v-carousel
+                        cycle
+                        height="400"
+                        hide-delimiter-background
+                        show-arrows-on-hover
+                    >
+                        <v-carousel-item
+                        v-for="(item, i) in items"
+                        :key="i"
+                        :src="item.src"
+                        >
+                        
+                        </v-carousel-item>
+                    </v-carousel>
+                </tr>
             </table>
         </div>
     </div>
@@ -65,7 +185,34 @@
 <script>
 export default {
     name: "uiComponents",
-    
+    data () {
+        return {
+            page: 1,
+            rules: [
+                value => !!value || 'Required.',
+                value => (value || '').length <= 20 || 'Max 20 characters',
+                value => {
+                const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                return pattern.test(value) || 'Invalid e-mail.'
+                },
+            ],
+            row: null,
+            items: [
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+                },
+            ],
+        }
+    },
 }
 </script>
 
