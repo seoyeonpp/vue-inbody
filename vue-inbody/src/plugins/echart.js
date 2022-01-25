@@ -7,18 +7,26 @@ import {
   CanvasRenderer
 } from 'echarts/renderers'
 import {
-  BarChart
+  BarChart,
+  LineChart,
 } from 'echarts/charts'
 import {
   GridComponent,
-  TooltipComponent
+  TooltipComponent,
+  TitleComponent,
+  LegendComponent,
+  ToolboxComponent,
 } from 'echarts/components'
 
 use([
   CanvasRenderer,
   BarChart,
+  LineChart,
   GridComponent,
-  TooltipComponent
+  TooltipComponent,
+  TitleComponent,
+  LegendComponent,
+  ToolboxComponent,
 ]);
 
 // register globally (or you can do it locally)

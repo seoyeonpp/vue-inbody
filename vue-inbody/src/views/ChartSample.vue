@@ -52,6 +52,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style >
+.chart {
+    height: 400px;
+}
 </style>
