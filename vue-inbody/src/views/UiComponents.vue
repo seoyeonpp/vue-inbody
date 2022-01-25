@@ -58,124 +58,142 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>tabs</th>
+                </tr>
+                <tr>
+                    <td>
+                        <v-tabs>
+                            <v-tab>Item One</v-tab>
+                            <v-tab>Item Two</v-tab>
+                            <v-tab>Item Three</v-tab>
+                        </v-tabs>
+                    </td>
+                </tr>
+                <tr>
                     <th>Date picker (year only)</th>
                 </tr>
                 <tr>
+                    <td>
                         <v-date-picker type="year">
-                        </v-date-picker>   
+                        </v-date-picker>
+                    </td>
                 </tr>
                 <tr>
                     <th>Pagination</th>
                 </tr>
                 <tr>
-                    <v-pagination
-                        v-model="page"
-                        :length="4"
-                        circle
-                    ></v-pagination>
+                    <td>
+                        <v-pagination
+                            v-model="page"
+                            :length="4"
+                            circle
+                        ></v-pagination>
+                    </td>
                 </tr>
                 <tr>
                     <th>Input</th>
                 </tr>
                 <tr>
                     <!-- validation input -->
-                    <v-text-field :rules="rules"></v-text-field>
+                    <td>
+                        <v-text-field :rules="rules"></v-text-field>
+                    </td>
                 </tr>
                 <tr>
                     <th>radio button</th>
                 </tr>
                 <tr>
-                    <v-radio-group
-                        v-model="row"
-                        row
-                        >
-                        <v-radio
-                            label="여성"
-                            value="female"
-                        ></v-radio>
-                        <v-radio
-                            label="남성"
-                            value="male"
-                        ></v-radio>
-                    </v-radio-group>
+                    <td>
+                        <v-radio-group
+                            v-model="row"
+                            row
+                            >
+                            <v-radio
+                                label="여성"
+                                value="female"
+                            ></v-radio>
+                            <v-radio
+                                label="남성"
+                                value="male"
+                            ></v-radio>
+                        </v-radio-group>
+                    </td>
                 </tr>
                 <tr>
                     <th>커뮤니티 게시판</th>
                 </tr>
                 <tr>
-                    <v-card>
-                        <v-toolbar
-                        flat
-                        color="blue"
-                        dark
-                        >
-                        <v-toolbar-title>후기를 남겨주세요</v-toolbar-title>
-                        </v-toolbar>
-
-                        <v-card-text>
-                        <v-text-field
-                            filled
-                            label="제목"
-                            value="My new post"
-                        ></v-text-field>
-
-                        <v-textarea
-                            filled
-                            label="내용"
-                            value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse"
-                        ></v-textarea>
-
-                        <v-divider class="my-2"></v-divider>
-
-                        <v-item-group multiple>
-                            <v-subheader>태그</v-subheader>
-                            <v-item
-                            v-for="n in 8"
-                            :key="n"
-                            v-slot="{ active, toggle }"
+                    <td>
+                        <v-card>
+                            <v-toolbar
+                            flat
+                            color="blue"
+                            dark
                             >
-                            <v-chip
-                                active-class="purple--text"
-                                :input-value="active"
-                                @click="toggle"
+                            <v-toolbar-title>후기를 남겨주세요</v-toolbar-title>
+                            </v-toolbar>
+                            <v-card-text>
+                            <v-text-field
+                                filled
+                                label="제목"
+                                value="My new post"
+                            ></v-text-field>
+                            <v-textarea
+                                filled
+                                label="내용"
+                                value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse"
+                            ></v-textarea>
+                            <v-divider class="my-2"></v-divider>
+                            <v-item-group multiple>
+                                <v-subheader>태그</v-subheader>
+                                <v-item
+                                v-for="n in 8"
+                                :key="n"
+                                v-slot="{ active, toggle }"
+                                >
+                                <v-chip
+                                    active-class="purple--text"
+                                    :input-value="active"
+                                    @click="toggle"
+                                >
+                                    Tag {{ n }}
+                                </v-chip>
+                                </v-item>
+                            </v-item-group>
+                            </v-card-text>
+                            <v-divider></v-divider>
+                            <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                color="success"
+                                depressed
                             >
-                                Tag {{ n }}
-                            </v-chip>
-                            </v-item>
-                        </v-item-group>
-                        </v-card-text>
-
-                        <v-divider></v-divider>
-
-                        <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            color="success"
-                            depressed
-                        >
-                            등록하기
-                        </v-btn>
-                        </v-card-actions>
-                    </v-card>
+                                등록하기
+                            </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </td>
                 </tr>
                 <tr>
                     <th>커뮤니티 후기사진 슬라이드</th>
                 </tr>
                 <tr>
-                    <v-carousel
-                        cycle
-                        height="400"
-                        hide-delimiter-background
-                        show-arrows-on-hover
-                    >
-                        <v-carousel-item
-                        v-for="(item, i) in items"
-                        :key="i"
-                        :src="item.src"
+                    <td>
+                        <v-carousel
+                            cycle
+                            height="400"
+                            hide-delimiter-background
+                            show-arrows-on-hover
                         >
+                            <v-carousel-item
+                            v-for="(item, i) in items"
+                            :key="i"
+                            :src="item.src"
+                            >
                         
-                        </v-carousel-item>
-                    </v-carousel>
+                            </v-carousel-item>
+                        </v-carousel>
+                    </td>
                 </tr>
             </table>
         </div>
