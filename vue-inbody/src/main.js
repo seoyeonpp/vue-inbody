@@ -4,7 +4,8 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 
-import "@/plugins/fontAwesomeIcon"
+import "@/plugins/fontAwesomeIcon";
+import "@/plugins/echart";
 import '@/assets/scss/index.scss';
 
 Vue.config.productionTip = false;

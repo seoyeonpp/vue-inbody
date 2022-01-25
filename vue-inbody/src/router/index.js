@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import UiComponents from "../views/UiComponents.vue";
+import ChartSample from "../views/ChartSample.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     path: "/uicomponents",
     name: "UiComponents",
     component: UiComponents,
+  },
+  {
+    path: "/chartsample",
+    name: "ChartSample",
+    component: ChartSample,
   },
 ];
 
