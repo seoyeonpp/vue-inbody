@@ -4,6 +4,10 @@ import Home from "../views/Home.vue";
 import UiComponents from "../views/UiComponents.vue";
 import ChartSample from "../views/ChartSample.vue";
 
+// 로그인
+import Login from "../views/login/Login.vue";
+
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -30,6 +34,11 @@ const routes = [
     path: "/chartsample",
     name: "ChartSample",
     component: ChartSample,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
   },
 ];
 
