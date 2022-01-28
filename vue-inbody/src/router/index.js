@@ -7,6 +7,9 @@ import ChartSample from "../views/ChartSample.vue";
 // 로그인
 import Login from "../views/login/Login.vue";
 
+// 게시판
+import BoardDetail from "../components/BoardDetail.vue";
+
 
 Vue.use(VueRouter);
 
@@ -39,6 +42,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/boardDetail",
+    name: "boardDetail",
+    component: BoardDetail,
   },
 ];
 
