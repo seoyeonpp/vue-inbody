@@ -1,7 +1,13 @@
 // 로그인
 .full-wrap {
     display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     height: 100%;
+    .inner-box {
+        
+    }
+}
+.input-box {
+    & ~ .input-box {margin-top: 20px;}
 }
