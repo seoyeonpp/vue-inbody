@@ -6,6 +6,7 @@ import ChartSample from "../views/ChartSample.vue";
 
 // 로그인
 import Login from "../views/login/Login.vue";
+import Join from "../views/login/Join.vue";
 
 // 게시판
 import BoardDetail from "../components/BoardDetail.vue";
@@ -42,6 +43,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/join",
+    name: "Join",
+    component: Join,
   },
   {
     path: "/boardDetail",

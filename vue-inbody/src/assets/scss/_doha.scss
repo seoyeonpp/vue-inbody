@@ -4,10 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    .inner-box {
-        
+    .button-group {
+        * ~ * {margin-left: 10px;}
     }
-}
-.input-box {
-    & ~ .input-box {margin-top: 20px;}
 }
