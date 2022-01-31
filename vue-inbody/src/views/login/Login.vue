@@ -1,9 +1,13 @@
 <template>
     <div class="full-wrap">
+        <tool-bar-header></tool-bar-header>
         <v-form>
             <v-container fluid>
                 <v-row>
-                    <v-col>
+                    <v-col align="center" class="mb-6">
+                        <h2>Login</h2>
+                    </v-col>
+                    <v-col cols="12">
                         <v-text-field
                             v-model="id"
                             :rules="[rules.required, rules.min]"
@@ -14,13 +18,13 @@
                     <v-col cols="12">
                         <v-text-field
                             v-model="password"
-                            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                            :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
                             :rules="[rules.required, rules.min]"
-                            :type="show1 ? 'text' : 'password'"
+                            :type="passwordShow ? 'text' : 'password'"
                             label="Passwrod"
                             hint="At least 8 characters"
                             value=""
-                            @click:append="show1 = !show1"
+                            @click:append="passwordShow = !passwordShow"
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12" align="right" class="button-group">
@@ -38,23 +42,30 @@
 
             </v-container>
         </v-form>
+        <tool-bar-foot></tool-bar-foot>
     </div>
 </template>
 
 <script>
+import ToolBarHeader from '@/components/ToolBarHeader.vue';
+import ToolBarFoot from '@/components/ToolBarFoot.vue';
+
 export default {
     name: "Login",
     data: () => ({
         id: '',
         password: '',
-        show1: false,
+        passwordShow: false,
         rules: {
           required: value => !!value || 'Required.',
           min: value => value.length >= 8 || 'Min 8 characters',
         //   emailMatch: () => (`The email and password you entered don't match`),
         },
     }),
-
+    components: {
+        ToolBarHeader,
+        ToolBarFoot
+    }
         
 }
 </script>
