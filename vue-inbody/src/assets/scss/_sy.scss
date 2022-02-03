@@ -1,0 +1,26 @@
+//게시판 상세
+.board-wrap{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .v-carousel{
+        margin-top: 104px;
+    }
+    .board-conts{
+        margin-top: 30px;
+        padding: 0 16px;
+        color: #333;
+        .board-writer{
+            font-size: 16px;
+        }
+        .board-title{
+            font-size: 24px;
+            padding: 8px 0;
+        }
+        .board-txt{
+            padding: 5px 0;
+            border: 1px solid #eee;
+            min-height: 100px;
+        }
+    }
+}
