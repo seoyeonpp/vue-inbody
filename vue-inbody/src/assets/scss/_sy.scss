@@ -8,19 +8,49 @@
     }
     .board-conts{
         margin-top: 30px;
-        padding: 0 16px;
+        // padding: 0 16px;
         color: #333;
-        .board-writer{
-            font-size: 16px;
+        .board-user{
+            font-size: 14px;
         }
         .board-title{
             font-size: 24px;
             padding: 8px 0;
         }
         .board-txt{
-            padding: 5px 0;
+            padding: 5px;
+            font-size: 14px;
             border: 1px solid #eee;
             min-height: 100px;
+            margin-bottom: 30px;
+        }
+        .board-comment{
+            padding: 5px;
+            font-size: 14px;
+            margin-bottom: 30px;
+            .v-textarea{
+                font-size: 14px;
+                .v-label{font-size: 14px;}
+            }
+        }
+        .board-info{
+            font-size: 14px;
+            margin-bottom: 10px;
+            & > span{
+                display: inline-block;
+                &:nth-child(n+2){
+                    margin-left: 10px;
+                }
+                & > span{
+                    color: #999;
+                }
+            }
+        }
+        .board-edit{
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            & > .v-btn{width: 48%;}
         }
     }
 }

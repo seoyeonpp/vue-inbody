@@ -1,5 +1,5 @@
 <template>
-    <div class="board-wrap">
+    <v-container class="board-wrap">
         <tool-bar-header></tool-bar-header>
         <v-carousel
             cycle
@@ -15,14 +15,31 @@
             </v-carousel-item>
         </v-carousel>
         <div class="board-conts">
-            <p class="board-writer">닉네임</p>
-            <h3 class="board-title">게시판 타이틀</h3>
+            <p class="board-user">{{userName}}</p>
+            <h3 class="board-title">{{boardTitle}}</h3>
             <div class="board-txt">
-                내용
+                {{boardTxt}}
+            </div>
+            <div class="board-info">
+                <span>조회 <span class="view-count">9</span></span>
+                <span><span class="post-date">1</span>일전</span>
+            </div>
+            <div class="board-comment">
+                <v-textarea prepend-inner-icon="mdi-comment" label="댓글" rows="1"></v-textarea>
+            </div>
+            <div class="board-edit">
+                <v-btn v-if="myBoard">
+                    <router-link to="/BoardWrite">
+                        수정
+                    </router-link>
+                </v-btn>
+                <v-btn v-if="myBoard">
+                    삭제
+                </v-btn>
             </div>
         </div>
         <tool-bar-foot></tool-bar-foot>
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -51,7 +68,10 @@ export default {
                     src: 'https://images.pexels.com/photos/1640771/pexels-photo-1640771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
                 },
             ],
-
+            myBoard : true,
+            userName : '작성자',
+            boardTitle : '커뮤니티 제목',
+            boardTxt : '어쩌구저쩌구 내용',
         }
     }
 }
