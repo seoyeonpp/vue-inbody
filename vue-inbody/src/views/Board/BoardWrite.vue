@@ -16,19 +16,22 @@
           <v-divider class="my-2"></v-divider>
           <v-subheader>사진</v-subheader>
           <div style="display: flex; width: 100%">
-            <template v-for="(image, index) in imageFileList">
-              <div class="mx-1" :key="index"></div>
-              <v-badge avatar bordered overlap :key="index">
-                <template v-slot:badge>
-                  <v-avatar>
-                    <v-img
-                      src="https://cdn.vuetifyjs.com/images/logos/v.png"
-                    ></v-img>
-                  </v-avatar>
+            <v-container>
+              <v-row no-gutters>
+                <template v-for="(image, index) in imageFileList">
+                  <v-badge class="pa-3" avatar bordered overlap :key="index">
+                    <template v-slot:badge>
+                      <v-avatar class="error">
+                        <v-icon>mdi-minus-circle</v-icon>
+                      </v-avatar>
+                    </template>
+                    <v-img :src="image" width="64" height="64"></v-img>
+                  </v-badge>
                 </template>
-                <v-img :src="image" width="64" height="64"></v-img>
-              </v-badge>
-            </template>
+              </v-row>
+            </v-container>
+          </div>
+          
             <label for="file">
               <v-btn
                 class="mx-2"
@@ -41,7 +44,6 @@
               </v-btn>
             </label>
             <input type="file" ref="uploader" hidden @change="onFileChanged" />
-          </div>
           <v-divider class="my-2"></v-divider>
           <v-item-group multiple>
             <v-subheader>태그</v-subheader>
@@ -96,8 +98,12 @@ export default {
       this.$refs.uploader.click();
     },
     onFileChanged(e) {
+      if(this.imageFileList.length<6){
       this.selectedFile = e.target.files[0];
       this.imageFileList.push(URL.createObjectURL(e.target.files[0]));
+      }else{
+        alert(`그림파일은 6개 까지 업로드 할 수 있습니다.`);
+      }
     },
   },
 };

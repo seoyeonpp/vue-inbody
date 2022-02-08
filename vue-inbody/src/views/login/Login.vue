@@ -1,6 +1,5 @@
 <template>
     <div class="full-wrap">
-        <tool-bar-header></tool-bar-header>
         <v-form>
             <v-container fluid>
                 <v-row>
@@ -33,7 +32,7 @@
                                 회원가입
                             </v-btn>
                         </router-link>
-                        <v-btn color="primary">
+                        <v-btn color="primary" @click="isLogin({id,password})">
                             로그인
                         </v-btn>
                     </v-col>
@@ -42,13 +41,14 @@
 
             </v-container>
         </v-form>
-        <tool-bar-foot></tool-bar-foot>
     </div>
 </template>
 
 <script>
 import ToolBarHeader from '@/components/ToolBarHeader.vue';
 import ToolBarFoot from '@/components/ToolBarFoot.vue';
+import axios from 'axios'
+import {mapActions} from 'vuex'
 
 export default {
     name: "Login",
@@ -65,7 +65,13 @@ export default {
     components: {
         ToolBarHeader,
         ToolBarFoot
-    }
+    },
+    methods: {
+        loginInfo(){
+            console.log(this.$store.state.userState)
+        },
+        ...mapActions(['isLogin'])
+    },
         
 }
 </script>
