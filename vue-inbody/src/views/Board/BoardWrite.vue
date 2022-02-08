@@ -15,10 +15,33 @@
           ></v-textarea>
           <v-divider class="my-2"></v-divider>
           <v-subheader>사진</v-subheader>
-          <v-btn class="mx-2" color="gray" width="64" height="64">
-            <v-icon dark> mdi-plus </v-icon>
-          </v-btn>
-          <v-file-input hidden label="file-input"></v-file-input>
+          <div style="display: flex; width: 100%">
+            <template v-for="(image, index) in imageFileList">
+              <div class="mx-1" :key="index"></div>
+              <v-badge avatar bordered overlap :key="index">
+                <template v-slot:badge>
+                  <v-avatar>
+                    <v-img
+                      src="https://cdn.vuetifyjs.com/images/logos/v.png"
+                    ></v-img>
+                  </v-avatar>
+                </template>
+                <v-img :src="image" width="64" height="64"></v-img>
+              </v-badge>
+            </template>
+            <label for="file">
+              <v-btn
+                class="mx-2"
+                color="gray"
+                width="64"
+                height="64"
+                @click="handleFileImport"
+              >
+                <v-icon dark> mdi-plus </v-icon>
+              </v-btn>
+            </label>
+            <input type="file" ref="uploader" hidden @change="onFileChanged" />
+          </div>
           <v-divider class="my-2"></v-divider>
           <v-item-group multiple>
             <v-subheader>태그</v-subheader>
@@ -52,6 +75,30 @@ export default {
   components: {
     ToolBarHeader,
     ToolBarFoot,
+  },
+  data() {
+    return {
+      isSelecting: false,
+      selectedFile: null,
+      imageFileList: [],
+    };
+  },
+  methods: {
+    handleFileImport() {
+      this.isSelecting = true;
+      window.addEventListener(
+        "focus",
+        () => {
+          this.isSelecting = false;
+        },
+        { once: true }
+      );
+      this.$refs.uploader.click();
+    },
+    onFileChanged(e) {
+      this.selectedFile = e.target.files[0];
+      this.imageFileList.push(URL.createObjectURL(e.target.files[0]));
+    },
   },
 };
 </script>
