@@ -16,6 +16,7 @@
     "core-js": "^3.6.5",
     "echarts": "^5.2.2",
     "vue": "^2.6.11",
+    "vue-custom-scrollbar": "^1.4.3",
     "vue-echarts": "^6.0.2",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
@@ -55,7 +56,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    }
   },
   "browserslist": [
     "> 1%",

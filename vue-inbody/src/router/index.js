@@ -11,7 +11,8 @@ import MoreInfo from "../views/login/MoreInfo.vue";
 
 // 게시판
 import BoardDetail from "../components/BoardDetail.vue";
-
+import BoardList from "../views/Board/BoardList.vue";
+import BoardWrite from "../views/Board/BoardWrite.vue";
 
 Vue.use(VueRouter);
 
@@ -59,6 +60,16 @@ const routes = [
     path: "/boardDetail",
     name: "boardDetail",
     component: BoardDetail,
+  },
+  {
+    path: "/boardList",
+    name: "boardList",
+    component: BoardList,
+  },
+  {
+    path: "/boardWrite",
+    name: "boardWrite",
+    component: BoardWrite,
   },
 ];
 
