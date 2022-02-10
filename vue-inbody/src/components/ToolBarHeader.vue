@@ -20,12 +20,21 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
     data: () => ({ 
         userName : '서도하',
     }),
     computed: {
       
+    },
+    created() {
+      let userName = this.getUser().userName
+      if(userName != null)
+        this.userName = userName
+    },
+    methods: {
+      ...mapGetters(['getUser'])
     },
 }
 </script>

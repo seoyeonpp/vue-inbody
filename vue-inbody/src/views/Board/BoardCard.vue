@@ -1,30 +1,5 @@
 <template>
-  <!-- <v-card elevation="2" outlined>
-    <v-banner>배너</v-banner>
-    <div style="display: flex">
-      <v-img
-        v-for="(item, index) in items"
-        :key="index"
-        :src="item.src"
-        max-height="80"
-        max-width="80"
-      ></v-img>
-    </div>
-    <v-card-title>게시물 리스트 테스트</v-card-title>
-    <v-card-text> 게시물 작성 본문 </v-card-text>
-    <v-divider></v-divider>
-    <v-card-subtitle>
-      <v-card-actions>
-        <v-avatar color="brown" size="48">
-          <span class="white--text text-h5">서도하</span>
-        </v-avatar>
-        <v-spacer></v-spacer>
-        <v-btn class="elevation-0" fab outlined color="teal">추천</v-btn>
-        <v-btn class="elevation-0" fab outlined color="indigo">댓글</v-btn>
-      </v-card-actions>
-    </v-card-subtitle>
-  </v-card> -->
-  <v-card :loading="loading" class="mx-auto my-3" max-width="374">
+  <v-card class="mx-auto my-3" max-width="374">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -57,7 +32,6 @@
 
     <v-card-text>
       <v-chip-group
-        v-model="selection"
         active-class="deep-purple accent-4 white--text"
         column
       >
@@ -68,7 +42,7 @@
     </v-card-text>
 
     <v-card-actions>
-      <v-btn color="deep-purple lighten-2" text @click="reserve"> Read </v-btn>
+      <v-btn color="deep-purple lighten-2" text> Read </v-btn>
 
       <v-spacer></v-spacer>
       <v-icon>mdi-thumb-up</v-icon>

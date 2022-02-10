@@ -47,7 +47,6 @@
 <script>
 import ToolBarHeader from '@/components/ToolBarHeader.vue';
 import ToolBarFoot from '@/components/ToolBarFoot.vue';
-import axios from 'axios'
 import {mapActions} from 'vuex'
 
 export default {
