@@ -11,7 +11,7 @@
             :key="i"
             :src="item.src"
             >
-            </v-carousel-item>
+            </v-carousel-item> 
         </v-carousel>
         <div class="board-conts">
             <p class="board-user">{{userName}}</p>
