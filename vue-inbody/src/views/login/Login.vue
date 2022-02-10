@@ -45,8 +45,6 @@
 </template>
 
 <script>
-import ToolBarHeader from '@/components/ToolBarHeader.vue';
-import ToolBarFoot from '@/components/ToolBarFoot.vue';
 import axios from 'axios'
 import {mapActions} from 'vuex'
 
@@ -62,10 +60,6 @@ export default {
         //   emailMatch: () => (`The email and password you entered don't match`),
         },
     }),
-    components: {
-        ToolBarHeader,
-        ToolBarFoot
-    },
     methods: {
         loginInfo(){
             console.log(this.$store.state.userState)
