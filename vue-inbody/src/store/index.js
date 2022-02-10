@@ -34,7 +34,7 @@ export default new Vuex.Store({
     },
     setInstance (state, payload) {  //로그인 후 넘겨받은 토큰을 헤더에 포함시킨 엑시오스 객체생성
       state.instance = axios.create({
-        baseURL: 'http://localhost:8080',
+        baseURL: 'http://18.191.222.197:8080',
         headers: {
           Authorization: `Bearer ${payload}`
         }
@@ -48,7 +48,7 @@ export default new Vuex.Store({
   actions: {
     isLogin ({state, commit}, obj) {
       let {id, password} = obj
-      axios.post('http://localhost:8080' + '/login',
+      axios.post('http://18.191.222.197:8080' + '/login',
         `username=${id}&password=${password}`
       ).then(({data}) => {
         commit('setToken', data.response.Token)
