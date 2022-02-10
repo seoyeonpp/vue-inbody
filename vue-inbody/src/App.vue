@@ -11,6 +11,7 @@
 <script>
 import ToolBarHeader from '@/components/ToolBarHeader.vue';
 import ToolBarFoot from '@/components/ToolBarFoot.vue';
+import {mapGetters} from 'vuex';
 
 export default {
   name: "App",
@@ -21,5 +22,11 @@ export default {
   data: () => ({
       isLogin: false,
   }),
+  computed: {
+      ...mapGetters(['getUser']),
+  },
+  created() {
+      this.isLogin = this.getUser.isLogin;
+  },
 };
 </script>

@@ -11,8 +11,8 @@ import MoreInfo from "../views/login/MoreInfo.vue";
 
 // 게시판
 import BoardDetail from "../components/BoardDetail.vue";
-import BoardList from "../views/Board/BoardList.vue";
-import BoardWrite from "../views/Board/BoardWrite.vue";
+import BoardList from "../views/board/BoardList.vue";
+import BoardWrite from "../views/board/BoardWrite.vue";
 
 Vue.use(VueRouter);
 
