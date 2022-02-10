@@ -1,6 +1,5 @@
 <template>
     <v-container class="board-wrap">
-        <tool-bar-header></tool-bar-header>
         <v-carousel
             cycle
             height="400"
@@ -38,7 +37,6 @@
                 </v-btn>
             </div>
         </div>
-        <tool-bar-foot></tool-bar-foot>
     </v-container>
 </template>
 
