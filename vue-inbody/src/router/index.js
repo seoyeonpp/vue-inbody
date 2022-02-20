@@ -10,11 +10,11 @@ import Join from "../views/login/Join.vue";
 
 // 게시판
 import BoardDetail from "../components/BoardDetail.vue";
-import BoardList from "../views/board/BoardList.vue";
-import BoardWrite from "../views/board/BoardWrite.vue";
+import BoardList from "../views/Board/BoardList.vue";
+import BoardWrite from "../views/Board/BoardWrite.vue";
 
 // 인바디 데이터 입력
-import InbodyData from "../views/login/InbodyData.vue";
+import InbodyData from "../components/InbodyData.vue";
 
 // 헬스리포트
 import Dashboard from "../views/main/Dashboard.vue";

@@ -32,7 +32,7 @@
                         수정
                     </router-link>
                 </v-btn>
-                <v-btn v-if="myBoard">
+                <v-btn v-if="myBoard" @click="getData">
                     삭제
                 </v-btn>
             </div>
@@ -41,14 +41,12 @@
 </template>
 
 <script>
-// 임시로 헤더, 푸터 추가
-import ToolBarHeader from '@/components/ToolBarHeader.vue';
-import ToolBarFoot from '@/components/ToolBarFoot.vue';
+import {mapActions} from 'vuex';
+import axios from 'axios';
 
 export default {
+    name: "BoardDetail",
     components: {
-        ToolBarHeader,
-        ToolBarFoot
     },
     data () {
         return {
@@ -67,14 +65,27 @@ export default {
                 },
             ],
             myBoard : true,
-            userName : '작성자',
-            boardTitle : '커뮤니티 제목',
-            boardTxt : '어쩌구저쩌구 내용',
+            userName : '',
+            boardTitle : '',
+            boardTxt : '',
+        }
+    },
+    methods: {
+        getData() {
+            let user = {};
+            user.userName = this.userName;
+
+            axios.get(
+                'http://18.191.222.197:8080/timeline/2',
+                `userNickname=${this.nick}&`
+            )
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>
