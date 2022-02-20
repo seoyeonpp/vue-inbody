@@ -20,11 +20,12 @@
                 {{boardTxt}}
             </div>
             <div class="board-info">
-                <span>조회 <span class="view-count">9</span></span>
-                <span><span class="post-date">1</span>일전</span>
+                <span>조회 <span class="view-count">{{viewCount}}</span></span>
+                <span><span class="post-date">{{postDate}}</span>일전</span>
             </div>
             <div class="board-comment">
-                <v-textarea prepend-inner-icon="mdi-comment" label="댓글" rows="1"></v-textarea>
+                <v-textarea prepend-inner-icon="mdi-comment" label="댓글" rows="1" v-model="comment" placeholder="댓글을 입력해보세요" v-on:keyup.enter="pushComment"></v-textarea>
+                <div id="commentList"></div>
             </div>
             <div class="board-edit">
                 <v-btn v-if="myBoard">
@@ -32,7 +33,7 @@
                         수정
                     </router-link>
                 </v-btn>
-                <v-btn v-if="myBoard" @click="getData">
+                <v-btn v-if="myBoard" @click="getData"> <!-- 테스트 중 -->
                     삭제
                 </v-btn>
             </div>
@@ -64,10 +65,13 @@ export default {
                     src: 'https://images.pexels.com/photos/1640771/pexels-photo-1640771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
                 },
             ],
-            myBoard : true,
-            userName : '',
-            boardTitle : '',
-            boardTxt : '',
+            myBoard: true,
+            userName: '',
+            boardTitle: '',
+            boardTxt: '',
+            viewCount: 0,
+            postDate: 0,
+            comment: ''
         }
     },
     methods: {
@@ -85,6 +89,18 @@ export default {
             .catch(error => {
                 console.error(error);
             });
+        },
+        pushComment (){
+            if(this.comment.trim() == ''){
+                alert('댓글을 입력하세요');
+            }else{
+                const newComment = document.createElement('p');
+                newComment.setAttribute('class','comments-list')
+                newComment.innerHTML = this.comment;
+                document.getElementById('commentList').appendChild(newComment);
+                this.comment = '';
+            }
+            console.log('댓글등록');
         }
     }
 }
