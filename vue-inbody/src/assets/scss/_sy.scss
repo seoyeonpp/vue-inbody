@@ -1,56 +1,68 @@
 //게시판 상세
-.board-wrap{
+.board-wrap {
     display: flex;
     flex-direction: column;
     height: 100%;
-    .v-carousel{
+    .v-carousel {
         margin-top: 104px;
     }
-    .board-conts{
+    .board-conts {
         margin-top: 30px;
         // padding: 0 16px;
         color: #333;
-        .board-user{
+        .board-user {
             font-size: 14px;
         }
-        .board-title{
+        .board-title {
             font-size: 24px;
             padding: 8px 0;
         }
-        .board-txt{
+        .board-txt {
             padding: 5px;
             font-size: 14px;
             border: 1px solid #eee;
             min-height: 100px;
             margin-bottom: 30px;
         }
-        .board-comment{
+        .board-comment {
             padding: 5px;
             font-size: 14px;
             margin-bottom: 30px;
-            .v-textarea{
+            .v-textarea {
                 font-size: 14px;
-                .v-label{font-size: 14px;}
+                .v-label {
+                    font-size: 14px;
+                }
             }
         }
-        .board-info{
+        .board-info {
             font-size: 14px;
             margin-bottom: 10px;
-            & > span{
+            & > span {
                 display: inline-block;
-                &:nth-child(n+2){
+                &:nth-child(n + 2) {
                     margin-left: 10px;
                 }
-                & > span{
+                & > span {
                     color: #999;
                 }
             }
         }
-        .board-edit{
+        .board-edit {
             display: flex;
             justify-content: space-between;
             align-content: center;
-            & > .v-btn{width: 48%;}
+            & > .v-btn {
+                width: 48%;
+            }
+        }
+        // comments
+        .comments-list {
+            background: rgba(25, 118, 210, 0.2);
+            border-radius: 10px;
+            padding: 5px;
+            font-size: 14px;
+            color: #333;
         }
     }
 }

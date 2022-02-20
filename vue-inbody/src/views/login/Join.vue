@@ -110,7 +110,7 @@
                             다음
                         </v-btn>
                     </v-col>
-                    
+
                 </v-row>
 
             </v-container>
@@ -173,10 +173,14 @@ export default {
 
             axios.post(
                 'http://18.191.222.197:8080/member/join',
-                `userId=${this.userId}&userPass=${this.password}&userNickname=${this.nick}&userPhone=${this.phone.replace(/\-/g, '')}&gender=${this.sextype}&birthYear=${this.date.replace(/\-/g, '')}`
-            )  
+                `userId=${this.userId}&
+                userPass=${this.password}&
+                userNickname=${this.nick}&
+                userPhone=${this.phone.replace(/\-/g, '')}&
+                gender=${this.sextype}&
+                birthYear=${this.date.replace(/\-/g, '')}`
+            )
             .then((data)=>{
-                console.log(data);
                 this.$router.push('/login');
             })
             .catch(error => {
@@ -184,7 +188,7 @@ export default {
             });
         },
     },
-        
+
 }
 </script>
 
