@@ -1,6 +1,5 @@
 <template>
     <v-container class="board-wrap">
-        <tool-bar-header></tool-bar-header>
         <v-carousel
             cycle
             height="400"
@@ -12,7 +11,7 @@
             :key="i"
             :src="item.src"
             >
-            </v-carousel-item>
+            </v-carousel-item> 
         </v-carousel>
         <div class="board-conts">
             <p class="board-user">{{userName}}</p>
@@ -38,7 +37,6 @@
                 </v-btn>
             </div>
         </div>
-        <tool-bar-foot></tool-bar-foot>
     </v-container>
 </template>
 
