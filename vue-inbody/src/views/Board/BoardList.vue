@@ -54,7 +54,7 @@ export default {
     .get(               //http method에 맞춰 메소드를 호출, .get .post .put .delete....
       '/timeline/list'  //첫번째 파라미터는 주소
       ,{params: {page:1,size:5}}  //두번째 파라미터는 요청때 넘겨줄 파라미터
-      )  
+      )
     .then((data)=>{     //then은 요청에 성공하면 실행되는 내용
       console.log(data)
       })
