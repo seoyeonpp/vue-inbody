@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container class="board-wrap">
-      <v-card style="margin-top: 110px; height: 80%">
+      <v-card>
         <v-toolbar flat color="blue" dark>
           <v-toolbar-title>후기를 남겨주세요</v-toolbar-title>
         </v-toolbar>
@@ -11,7 +11,8 @@
             filled
             label="내용"
             v-model="content"
-            value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse"
+            value=""
+            rows="25"
           ></v-textarea>
           <v-divider class="my-2"></v-divider>
           <v-subheader>사진

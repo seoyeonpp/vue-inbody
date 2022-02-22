@@ -5,6 +5,12 @@
     border: 1px solid #eee;
 
     header {
+        position: fixed;
+        top: 0;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 375px;
+
         .header-name-button {
             padding: 3px 10px;
             border-radius: 20px;
@@ -20,8 +26,28 @@
                 }
             }
         }
+        & + .v-main {
+            padding: 104px 0 56px !important;
+        }
     }
 
+    .inner-wrap {
+      height: 100%;
+      padding: 10px;
+    }
+
+    .page-tit {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .v-bottom-navigation {
+        position: fixed;
+        bottom: 0;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 375px;
+    }
 
 
 }

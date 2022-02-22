@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container class="board-wrap">
-      <div class="board-comment" style="margin-top: 100px">
+      <div class="board-comment">
         <v-text-field
           prepend-inner-icon="mdi-search-web"
           label="검색"
@@ -56,7 +56,7 @@ export default {
       if(!this.callBool) return;
       let boardList =  this.boardCardList
       axios  
-        .get('/timeline/list',{params: {page:this.page,size:2}}  
+        .get('/timeline/list',{params: {page:this.page,size:5}}  
       ).then(({data})=>{    
 
         let {timeline} = data

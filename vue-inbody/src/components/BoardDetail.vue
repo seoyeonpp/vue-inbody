@@ -1,6 +1,5 @@
 <template>
     <v-container class="board-wrap">
-        <tool-bar-header></tool-bar-header>
         <v-carousel
             cycle
             height="400"
@@ -12,7 +11,7 @@
             :key="i"
             :src="item.src"
             >
-            </v-carousel-item>
+            </v-carousel-item> 
         </v-carousel>
         <div class="board-conts">
             <p class="board-user">{{userName}}</p>
@@ -21,11 +20,12 @@
                 {{boardTxt}}
             </div>
             <div class="board-info">
-                <span>조회 <span class="view-count">9</span></span>
-                <span><span class="post-date">1</span>일전</span>
+                <span>조회 <span class="view-count">{{viewCount}}</span></span>
+                <span><span class="post-date">{{postDate}}</span>일전</span>
             </div>
             <div class="board-comment">
-                <v-textarea prepend-inner-icon="mdi-comment" label="댓글" rows="1"></v-textarea>
+                <v-textarea prepend-inner-icon="mdi-comment" label="댓글" rows="1" v-model="comment" placeholder="댓글을 입력해보세요" v-on:keyup.enter="pushComment"></v-textarea>
+                <div id="commentList"></div>
             </div>
             <div class="board-edit">
                 <v-btn v-if="myBoard">
@@ -33,24 +33,21 @@
                         수정
                     </router-link>
                 </v-btn>
-                <v-btn v-if="myBoard">
+                <v-btn v-if="myBoard" @click="getData"> <!-- 테스트 중 -->
                     삭제
                 </v-btn>
             </div>
         </div>
-        <tool-bar-foot></tool-bar-foot>
     </v-container>
 </template>
 
 <script>
-// 임시로 헤더, 푸터 추가
-import ToolBarHeader from '@/components/ToolBarHeader.vue';
-import ToolBarFoot from '@/components/ToolBarFoot.vue';
+import {mapActions} from 'vuex';
+import axios from 'axios';
 
 export default {
+    name: "BoardDetail",
     components: {
-        ToolBarHeader,
-        ToolBarFoot
     },
     data () {
         return {
@@ -68,15 +65,43 @@ export default {
                     src: 'https://images.pexels.com/photos/1640771/pexels-photo-1640771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
                 },
             ],
-            myBoard : true,
-            userName : '작성자',
-            boardTitle : '커뮤니티 제목',
-            boardTxt : '어쩌구저쩌구 내용',
+            myBoard: true,
+            userName: '',
+            boardTitle: '',
+            boardTxt: '',
+            viewCount: 0,
+            postDate: 0,
+            comment: ''
+        }
+    },
+    methods: {
+        getData() {
+            let user = {};
+            user.userName = this.userName;
+
+            axios.get(
+                'http://18.191.222.197:8080/timeline/2',
+                `userNickname=${this.nick}&`
+            )
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
+        pushComment (){
+            if(this.comment.trim() == ''){
+                alert('댓글을 입력하세요');
+            }else{
+                const newComment = document.createElement('p');
+                newComment.setAttribute('class','comments-list')
+                newComment.innerHTML = this.comment;
+                document.getElementById('commentList').appendChild(newComment);
+                this.comment = '';
+            }
+            console.log('댓글등록');
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>

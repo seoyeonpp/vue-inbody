@@ -1,6 +1,6 @@
 <template>
     <div class="full-wrap">
-        <v-form>
+        <v-form ref="form" v-model="valid">
             <v-container fluid>
                 <v-row>
                     <v-btn
@@ -21,6 +21,7 @@
                             :rules="[rules.required, rules.min]"
                             label="ID"
                             value=""
+                            v-model="userId"
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12">
@@ -52,6 +53,15 @@
                             :rules="[rules.required]"
                             label="닉네임"
                             value=""
+                            v-model="nick"
+                        ></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-text-field
+                            :rules="[rules.required]"
+                            label="Phone"
+                            value=""
+                            v-model="phone"
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12">
@@ -95,11 +105,12 @@
                         </v-menu>
                     </v-col>
                     <v-col cols="12" align="center" class="mt-6">
-                        <v-btn color="primary" @click="nextMove">
+                        <!-- <v-btn color="primary" @click="nextMove"> -->
+                        <v-btn color="primary" @click="validate" :disabled="!valid">
                             다음
                         </v-btn>
                     </v-col>
-                    
+
                 </v-row>
 
             </v-container>
@@ -108,10 +119,14 @@
 </template>
 
 <script>
+import axios from 'axios';
+import {mapGetters} from 'vuex';
+
 export default {
     name: "Join",
     data: () => ({
-        id: '',
+        valid: true,
+        userId: '',
         password: '',
         rePassword: '',
         passwordShow: false,
@@ -121,6 +136,7 @@ export default {
         activePicker: null,
         date: null,
         menu: false,
+        phone: '',
         rules: {
           required: value => !!value || 'Required.',
           min: value => value.length >= 8 || 'Min 8 characters',
@@ -129,7 +145,7 @@ export default {
     computed: {
         passwordConfirmationRule() {
             return () => (this.password === this.rePassword) || 'Password must match'
-        }
+        },
     },
     watch: {
         menu (val) {
@@ -146,8 +162,33 @@ export default {
         backMove() {
             this.$router.go(-1);
         },
+        validate() {
+            let user = {};
+            user.userId = this.userId;
+            user.userPass = this.password;
+            user.userNickname = this.nick;
+            user.userPhone = this.phone.replace(/\-/g, '');
+            user.gender = this.sextype;
+            user.birthYear = this.date.replace(/\-/g, '');
+
+            axios.post(
+                'http://18.191.222.197:8080/member/join',
+                `userId=${this.userId}&
+                userPass=${this.password}&
+                userNickname=${this.nick}&
+                userPhone=${this.phone.replace(/\-/g, '')}&
+                gender=${this.sextype}&
+                birthYear=${this.date.replace(/\-/g, '')}`
+            )
+            .then((data)=>{
+                this.$router.push('/login');
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
     },
-        
+
 }
 </script>
 

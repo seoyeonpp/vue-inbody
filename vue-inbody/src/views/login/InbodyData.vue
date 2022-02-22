@@ -14,7 +14,7 @@
                         </v-icon>
                     </v-btn>
                     <v-col align="center" class="mb-6">
-                        <h2>추가정보 입력</h2>
+                        <h2>인바디 데이터를 입력해주세요.</h2>
                     </v-col>
                     <v-col cols="12">
                         <v-text-field
@@ -51,13 +51,13 @@
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12" align="center" class="mt-6">
-                        <router-link to="/login">
+                        <router-link to="/dashboard">
                             <v-btn color="primary">
-                                회원가입
+                                입력완료
                             </v-btn>
                         </router-link>
                     </v-col>
-                    
+
                 </v-row>
 
             </v-container>
@@ -86,7 +86,7 @@ export default {
             this.$router.go(-1);
         },
     },
-        
+
 }
 </script>
 
