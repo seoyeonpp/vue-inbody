@@ -1,49 +1,51 @@
 <template>
   <v-app>
     <v-container class="board-wrap">
-      <tool-bar-header></tool-bar-header>
       <v-card style="margin-top: 110px; height: 80%">
         <v-toolbar flat color="blue" dark>
           <v-toolbar-title>후기를 남겨주세요</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <v-text-field filled label="제목" value="My new post"></v-text-field>
+          <v-text-field filled label="제목" v-model="title" value="My new post"></v-text-field>
           <v-textarea
             filled
             label="내용"
+            v-model="content"
             value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse"
           ></v-textarea>
           <v-divider class="my-2"></v-divider>
-          <v-subheader>사진</v-subheader>
-          <div style="display: flex; width: 100%">
-            <v-container>
-              <v-row no-gutters>
-                <template v-for="(image, index) in imageFileList">
-                  <v-badge class="pa-3" avatar bordered overlap :key="index">
-                    <template v-slot:badge>
-                      <v-avatar class="error">
-                        <v-icon>mdi-minus-circle</v-icon>
-                      </v-avatar>
-                    </template>
-                    <v-img :src="image" width="64" height="64"></v-img>
-                  </v-badge>
-                </template>
-              </v-row>
-            </v-container>
-          </div>
-          
+          <v-subheader>사진
             <label for="file">
               <v-btn
                 class="mx-2"
                 color="gray"
-                width="64"
-                height="64"
+                width="20"
+                height="20"
                 @click="handleFileImport"
               >
                 <v-icon dark> mdi-plus </v-icon>
               </v-btn>
             </label>
             <input type="file" ref="uploader" hidden @change="onFileChanged" />
+
+          </v-subheader>
+          
+          <div style="display: flex; width: 100%">
+            <v-container>
+              <v-row no-gutters>
+                <template v-for="(image, index) in imageFileList">
+                  <span class="pa-3" avatar bordered overlap :key="index">
+                    <span @click="deleteImg(index)" style="position: absolute; z-index:2;">
+                      <v-icon >mdi-minus-circle</v-icon>
+                    </span>
+                    <v-img :src="image.src" width="64" height="64"></v-img>
+                  </span>
+                </template>
+              </v-row>
+            </v-container>
+          </div>
+          
+            
           <v-divider class="my-2"></v-divider>
           <v-item-group multiple>
             <v-subheader>태그</v-subheader>
@@ -61,11 +63,10 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="success" depressed> 등록하기 </v-btn>
+          <v-btn color="success" depressed @click="doBoardWrite()"> 등록하기 </v-btn>
         </v-card-actions>
       </v-card>
     </v-container>
-    <tool-bar-foot></tool-bar-foot>
   </v-app>
 </template>
 
@@ -73,6 +74,10 @@
 // 임시로 헤더, 푸터 추가
 import ToolBarFoot from "@/components/ToolBarFoot.vue";
 import ToolBarHeader from "@/components/ToolBarHeader.vue";
+import {mapGetters} from "vuex";
+import axios from 'axios'
+import router from '@/router'
+
 export default {
   components: {
     ToolBarHeader,
@@ -82,10 +87,14 @@ export default {
     return {
       isSelecting: false,
       selectedFile: null,
-      imageFileList: [],
+      title: '',
+      content: '',
+      imageFileList: new Array(),
+      pending: true
     };
   },
   methods: {
+    ...mapGetters(['getUser']),
     handleFileImport() {
       this.isSelecting = true;
       window.addEventListener(
@@ -100,11 +109,39 @@ export default {
     onFileChanged(e) {
       if(this.imageFileList.length<6){
       this.selectedFile = e.target.files[0];
-      this.imageFileList.push(URL.createObjectURL(e.target.files[0]));
+      this.imageFileList.push({src:URL.createObjectURL(e.target.files[0]), fileOrg:this.selectedFile});
       }else{
         alert(`그림파일은 6개 까지 업로드 할 수 있습니다.`);
       }
     },
+    doBoardWrite(){
+      if(this.pending){
+        this.pending = false;
+      }else{
+        return;
+      }
+      const formData = new FormData();
+      formData.append("title",this.title)
+      formData.append("content",this.content)
+      this.imageFileList.forEach((val,idx)=>{
+        formData.append("timeLinePhotos",val.fileOrg)
+      })
+      axios.post('/timeline/',formData, {
+        header:{
+          'Context-Type': 'multipart/form-data'
+        }
+      }).then(({data})=>{
+        if(data.result=="success"){
+          alert('등록 성공')
+          router.push('/boardList')
+        }
+      }).catch((err)=>{
+        alert('등록 실패')
+      }).then(() => {this.pending = true});    
+    },
+    deleteImg(key){
+      this.imageFileList.splice(key,1)
+    }
   },
 };
 </script>

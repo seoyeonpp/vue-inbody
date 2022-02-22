@@ -18,14 +18,14 @@
       </v-carousel-item>
     </v-carousel>
 
-    <v-card-title>제목</v-card-title>
+    <v-card-title>{{data.title}}</v-card-title>
 
     <v-card-text>
       <v-row align="center" class="mx-0"> </v-row>
 
-      <div class="my-4 text-subtitle-1">서도하</div>
+      <div class="my-4 text-subtitle-1">{{data.member.userNickname}}</div>
 
-      <div>본문 내용</div>
+      <div>{{data.content}}</div>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
@@ -54,7 +54,10 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  props: ['data'],
   data() {
     return {
       items: [
@@ -72,6 +75,13 @@ export default {
         },
       ],
     };
+  },
+  created() {
+    let url = `${axios.defaults.baseURL}`
+    this.items = this.data.timeLinePhotos.map(({fileName})=>{
+      return {src:`${url}file/${fileName}`}
+    })
+    console.log(this.items)
   },
 };
 </script>

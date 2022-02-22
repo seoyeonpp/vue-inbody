@@ -20,13 +20,14 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
+import router from '@/router'
+
 export default {
     data: () => ({ 
         userName : '서도하',
     }),
     computed: {
-      
     },
     created() {
       let userName = this.getUser().userName
@@ -34,7 +35,18 @@ export default {
         this.userName = userName
     },
     methods: {
-      ...mapGetters(['getUser'])
+      ...mapGetters(['getUser']),
+      ...mapActions(['tokenCheck'])
+    },
+    computed: {
+      isLogin () {
+        return this.getUser().isLogin
+      }
+    },
+    watch: {
+      isLogin () {
+        router.push('/login')
+      }
     },
 }
 </script>

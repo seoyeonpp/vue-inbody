@@ -13,13 +13,9 @@ export default new Vuex.Store({
       userName:null,
       Token:null,
       isLogin:false
-    },
-    instance: null
+    }
   },
   getters:{
-    getAxios(state, getter){    //setInstance에서 생성한 엑시오스 객체를 넘겨받음
-      return state.instance;
-    },
     getUser(state, getter){
       return state.userState;
     }
@@ -31,14 +27,8 @@ export default new Vuex.Store({
     },
     logOut (state, payload) {
       state.userState.isLogin = false
-    },
-    setInstance (state, payload) {  //로그인 후 넘겨받은 토큰을 헤더에 포함시킨 엑시오스 객체생성
-      state.instance = axios.create({
-        baseURL: 'http://18.191.222.197:8080',
-        headers: {
-          Authorization: `Bearer ${payload}`
-        }
-      })
+      state.userState.userId = null
+      state.userState.userName = null
     },
     setUser (state, {userId, userName}) {
       state.userState.userId = userId
@@ -48,13 +38,28 @@ export default new Vuex.Store({
   actions: {
     isLogin ({state, commit}, obj) {
       let {id, password} = obj
-      axios.post('http://18.191.222.197:8080' + '/login',
+      axios.post('/login',
         `username=${id}&password=${password}`
       ).then(({data}) => {
         commit('setToken', data.response.Token)
-        commit('setInstance', data.response.Token)
         commit('setUser', data.response.user)
         router.push('/boardList')
+      }).catch((error)=>{
+        console.log(error);
+        alert(`로그인실패`)
+      })
+    },
+    tokenCheck({state, commit}, obj){
+      axios.get('/member/check')
+      .then(({data})=>{
+        console.log(data);
+        if(data.code=="update"){
+          commit('setToken', data.message)
+        }
+        if(data.code=="access_denied"){
+          commit('logOut')
+          router.push('/login')
+        }
       })
     }
   },
