@@ -9,14 +9,28 @@
           no-resize
         ></v-text-field>
       </div>
-      <vueCustomScrollbar
+      <div
+      class="scroll-area"
         @ps-y-reach-end="callCard"
       >
         <template v-for="(data, index) in boardCardList">
           <board-card :key="index" :data="data"></board-card>
         </template>
-      </vueCustomScrollbar>
+        <v-btn 
+        class="mx-2 writeBtn"
+        fab
+        dark
+        color="teal"
+        fixed
+        router-link to="/boardwrite"
+      >
+        <v-icon dark>
+          mdi-plus
+        </v-icon>
+      </v-btn>
+      </div>
     </v-container>
+    
   </v-app>
 </template>
 
@@ -81,5 +95,11 @@ body,
 .v-main,
 .container{
   height:100%
+}
+
+.writeBtn{
+  left: 50%;
+  bottom: 80px;
+  transform:translate(120px,0);
 }
 </style>

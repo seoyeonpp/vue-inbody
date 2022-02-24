@@ -11,9 +11,9 @@
             <v-icon>mdi-format-list-bulleted-square</v-icon>
         </v-btn>
 
-        <v-btn>
+        <v-btn router-link to="/boardList">
             <span>커뮤니티</span>
-            <v-icon>mdi-message-text</v-icon>
+            <v-icon >mdi-message-text</v-icon>
         </v-btn>
 
         <v-btn>
